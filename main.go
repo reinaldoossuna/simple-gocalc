@@ -3,12 +3,14 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"strings"
 
 	"calc/stack"
 	"calc/display"
 )
 
 var s stack.Stack
+var p []float64
 
 func blankCalc() {
 	display.ClearTerm()
@@ -18,6 +20,21 @@ func blankCalc() {
 	fmt.Println(" A: ")
 	fmt.Println("-------------")
 	fmt.Print(". ")
+	display.GoToend()
+}
+
+func updateValues() {
+
+	p = s.Preview(4)
+
+	for i := 0; i < 4; i++ {
+		display.ClearLine(uint16(4 - i), 5) // move cursor and clean line
+
+		if i < len(p) {
+			fmt.Print(p[i])
+		}
+	}
+
 	display.GoToend()
 }
 
@@ -44,8 +61,6 @@ func waitForInput() {
 
 func main() {
 	blankCalc()
-	n, _ := strconv.ParseFloat("1.33", 64)
-	s.Push(n)
-	updateValue(s.Pop().Value, 4)
 	waitForInput()
+	updateValue(s.Pop().Value, 4)
 }
