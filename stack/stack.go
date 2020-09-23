@@ -65,3 +65,13 @@ func (s *Stack) Pick(n int) *Node {
 	s.head = newHead
 	return s.Pop()
 }
+
+func (s *Stack) Preview(n int) []float64 {
+	var l []float64
+	temp := s.head
+	for i := 0; i < s.count && i < n; i++ {
+		l = append(l, temp.Value)
+		temp = temp.next
+	}
+	return l
+}
