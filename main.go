@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"math"
 
 	"calc/stack"
 	"calc/display"
@@ -42,6 +43,57 @@ func updateValue(value float64, row uint16) {
 	display.MoveCursorTo(row, 5)
 	fmt.Print(value)
 	display.GoToend()
+}
+
+func multiply() {
+	if s.Count() < 2 {
+		return
+	}
+
+	b := s.Pop().Value
+	a := s.Pop().Value
+	s.Push(a * b)
+}
+
+func div() {
+	if s.Count() < 2 {
+		return
+	}
+
+	b := s.Pop().Value
+	a := s.Pop().Value
+	s.Push(a / b)
+}
+
+func sume() {
+	if s.Count() < 2 {
+		return
+	}
+
+	b := s.Pop().Value
+	a := s.Pop().Value
+	s.Push(a + b)
+}
+
+func diff() {
+	if s.Count() < 2 {
+		return
+	}
+
+	b := s.Pop().Value
+	a := s.Pop().Value
+	s.Push(a - b)
+}
+
+
+func pow() {
+	if s.Count() < 2 {
+		return
+	}
+
+	b := s.Pop().Value
+	a := s.Pop().Value
+	s.Push(math.Pow(a, b))
 }
 
 func parseInput(i string) {
