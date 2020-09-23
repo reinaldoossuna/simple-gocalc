@@ -46,6 +46,32 @@ func updateValue(value float64, row uint16) {
 
 func parseInput(i string) {
 
+	i = strings.TrimSpace(i)
+	n, err := strconv.ParseFloat(i, 64)
+	if err == nil {
+		s.Push(n)
+	}
+
+	if len(i) == 1 {
+		switch i {
+		case "*":
+			multiply()
+		case "+":
+			sume()
+		case "-":
+			diff()
+		case "/":
+			div()
+		case "^":
+			pow()
+		case "~":
+			s.Shuffle()
+		case "!":
+			s.Pop()
+		}
+	}
+
+	updateValues()
 }
 
 func waitForInput() {
