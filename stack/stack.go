@@ -17,6 +17,9 @@ type Stack struct {
 	head *Node // first off
 	count int
 }
+func (s *Stack) Count() int {
+	return s.count
+}
 
 func (s *Stack) Push(v float64) {
 	n := Node{v, s.head}

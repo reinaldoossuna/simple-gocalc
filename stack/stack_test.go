@@ -40,3 +40,15 @@ func TestPick(t *testing.T) {
 		t.Errorf("Stack Pop = %v, want %v", got, want)
 	}
 }
+
+func TestPreview(t *testing.T) {
+	s := Stack{}
+	n := 4
+	for i := 0; i < n; i++ {
+		s.Push(float64(i))
+	}
+	got := s.Preview(4)
+	for i := 0; i < n; i++ {
+		t.Errorf("Preview = %v, want %v", got[i], float64(n - i - 1))
+	}
+}
